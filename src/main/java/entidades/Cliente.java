@@ -26,10 +26,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.Data;
 
-/**
- *
- * @author Girlaine Silva
- */
+
 @Data
 @Entity
 @Table(name = "cliente")

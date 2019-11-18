@@ -19,10 +19,6 @@ import org.springframework.web.servlet.ModelAndView;
 import repositorios.IImagemRepositorio;
 import repositorios.IProdutoRepositorio;
 
-/**
- *
- * @author Girlaine
- */
 @Controller
 @RequestMapping("/")
 public class HomeController {

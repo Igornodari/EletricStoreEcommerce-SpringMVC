@@ -21,10 +21,7 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 
-/**
- *
- * @author Gi
- */
+
 @Entity
 @Table(name = "itenspedido")
 public class ItensPedido implements Serializable {

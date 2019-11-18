@@ -7,12 +7,12 @@ import java.util.Map;
  *
  * @author Gi
  */
-public enum ETipoAnimal {
+public enum ETipoProduto {
 	 Xiaomi(1), Iphone(2), Sansung(3), Hawaii(4);
 
     private final int opcao;
 
-    ETipoAnimal(int opcao) {
+    ETipoProduto(int opcao) {
         this.opcao = opcao;
     }
 
@@ -20,7 +20,7 @@ public enum ETipoAnimal {
         return this.opcao;
     }
 
-    public static ETipoAnimal fromInt(int x) {
+    public static ETipoProduto fromInt(int x) {
         switch (x) {
             case 1:
                 return Xiaomi;
@@ -37,7 +37,7 @@ public enum ETipoAnimal {
 
     public static Map getValues() {
         Map<String, String> lista = new HashMap<>();
-        for(ETipoAnimal i : ETipoAnimal.values()){
+        for(ETipoProduto i : ETipoProduto.values()){
             lista.put(String.valueOf(i.getOpcao()), i.toString());
         }
         return lista;

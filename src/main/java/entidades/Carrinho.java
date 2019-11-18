@@ -5,10 +5,7 @@
  */
 package entidades;
 
-/**
- *
- * @author Gi
- */
+
 public class Carrinho {
     private int idProduto;
     private int quantidade;

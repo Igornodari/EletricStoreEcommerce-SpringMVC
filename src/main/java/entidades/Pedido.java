@@ -28,10 +28,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 import utils.FormaPagamento;
 import utils.StatusPedido;
 
-/**
- *
- * @author Gi
- */
 @Entity
 @Table(name = "pedido")
 public class Pedido implements Serializable {

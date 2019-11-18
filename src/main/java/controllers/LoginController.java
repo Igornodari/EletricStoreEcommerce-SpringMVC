@@ -24,10 +24,7 @@ import repositorios.IClienteRepositorio;
 
 import java.util.List;
 
-/**
- *
- * @author Girlaine
- */
+
 @Controller
 public class LoginController {
 

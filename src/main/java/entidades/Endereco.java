@@ -22,10 +22,7 @@ import javax.validation.constraints.Size;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 
-/**
- *
- * @author Girlaine
- */
+
 @Entity
 @Table(name = "endereco")
 public class Endereco implements Serializable {
