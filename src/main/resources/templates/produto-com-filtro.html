@@ -1,0 +1,253 @@
+<html layout:decorate="~{navbarComponent}">
+
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Cadastro de cliente</title>
+    </head>
+
+    <body>
+        <main layout:fragment="conteudo">
+            <section class="">
+                <div class="container-fluid filterProd d-sm-none d-none d-md-block d-sm-none">
+                    <div class=" row">
+                        <div class="card col-md-2 col-6 ">
+                            <div class=" text-center">
+                                <div class="card-header">
+                                    Filtros
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-12 ">
+                                    <h5>Preço:</h5>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <b>R$ 10</b>
+                                        </div>
+                                        <div class="col-6 text-right">
+                                            <b>R$ 1000</b>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <input class="w-100" type="range"/>
+                                        </div>
+                                    </div>
+                                    <br>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-12">
+                                    <h5>Raças</h5>
+                                    <!-- Default checked -->
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="defaultChecked1" >
+                                        <label class="custom-control-label" for="defaultChecked1">Pit Bull</label>
+                                    </div>
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="defaultChecked2" >
+                                        <label class="custom-control-label" for="defaultChecked2">Pinscher</label>
+                                    </div>
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="defaultChecked3" >
+                                        <label class="custom-control-label" for="defaultChecked3">Chihuahua</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-12">
+                                    <h5>Porte</h5>
+                                    <!-- Default checked -->
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="defaultChecked1" >
+                                        <label class="custom-control-label" for="defaultChecked1">Pequeno</label>
+                                    </div>
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="defaultChecked2" >
+                                        <label class="custom-control-label" for="defaultChecked2">Médio</label>
+                                    </div>
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="defaultChecked3" >
+                                        <label class="custom-control-label" for="defaultChecked3">Grande</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-12">
+                                    <h5>Marcas</h5>
+                                    <!-- Default checked -->
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="defaultChecked1" >
+                                        <label class="custom-control-label" for="defaultChecked1">Pedigree</label>
+                                    </div>
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="defaultChecked2" >
+                                        <label class="custom-control-label" for="defaultChecked2">Whiskas</label>
+                                    </div>
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="defaultChecked3" >
+                                        <label class="custom-control-label" for="defaultChecked3">Golden</label>
+                                    </div>
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="defaultChecked3" >
+                                        <label class="custom-control-label" for="defaultChecked3">Margnus</label>
+                                    </div>
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="defaultChecked3" >
+                                        <label class="custom-control-label" for="defaultChecked3">Royal Canin</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+            <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+            <script th:inline="javascript">
+
+                $(document).ready(function () {
+                    if ($('.card-header.card-chart').length != 0) {
+                        md.initDashboardPageCharts();
+                    }
+
+                    if ($('#websiteViewsChart').length != 0) {
+                        md.initDocumentationCharts();
+                    }
+
+                    if ($('.datetimepicker').length != 0) {
+                        md.initFormExtendedDatetimepickers();
+                    }
+                    if ($('#fullCalendar').length != 0) {
+                        md.initFullCalendar();
+                    }
+
+                    if ($('.slider').length != 0) {
+                        md.initSliders();
+                    }
+
+                    //  Activate the tooltips
+                    $('[data-toggle="tooltip"]').tooltip();
+
+                    // Activate Popovers
+                    $('[data-toggle="popover"]').popover();
+
+                    // Vector map
+                    if ($('#worldMap').length != 0) {
+                        md.initVectorMap();
+                    }
+
+                    if ($('#RegisterValidation').length != 0) {
+
+                        setFormValidation('#RegisterValidation');
+
+                        function setFormValidation(id) {
+                            $(id).validate({
+                                highlight: function (element) {
+                                    $(element).closest('.form-group').removeClass('has-success').addClass('has-danger');
+                                    $(element).closest('.form-check').removeClass('has-success').addClass('has-danger');
+                                },
+                                success: function (element) {
+                                    $(element).closest('.form-group').removeClass('has-danger').addClass('has-success');
+                                    $(element).closest('.form-check').removeClass('has-danger').addClass('has-success');
+                                },
+                                errorPlacement: function (error, element) {
+                                    $(element).closest('.form-group').append(error);
+                                },
+                            });
+                        }
+                    }
+
+                });
+
+                // FileInput
+                $('.form-file-simple .inputFileVisible').click(function () {
+                    $(this).siblings('.inputFileHidden').trigger('click');
+                });
+
+                $('.form-file-simple .inputFileHidden').change(function () {
+                    var filename = $(this).val().replace(/C:\\fakepath\\/i, '');
+                    $(this).siblings('.inputFileVisible').val(filename);
+                });
+
+                $('.form-file-multiple .inputFileVisible, .form-file-multiple .input-group-btn').click(function () {
+                    $(this).parent().parent().find('.inputFileHidden').trigger('click');
+                    $(this).parent().parent().addClass('is-focused');
+                });
+
+                $('.form-file-multiple .inputFileHidden').change(function () {
+                    var names = '';
+                    for (var i = 0; i < $(this).get(0).files.length; ++i) {
+                        if (i < $(this).get(0).files.length - 1) {
+                            names += $(this).get(0).files.item(i).name + ',';
+                        } else {
+                            names += $(this).get(0).files.item(i).name;
+                        }
+                    }
+                    $(this).siblings('.input-group').find('.inputFileVisible').val(names);
+                });
+
+                $('.form-file-multiple .btn').on('focus', function () {
+                    $(this).parent().siblings().trigger('focus');
+                });
+
+                $('.form-file-multiple .btn').on('focusout', function () {
+                    $(this).parent().siblings().trigger('focusout');
+                });
+
+                //estamos usando uma api gratuita para a consulta de CEPs
+                $("#cep").focusout(function () {
+                    if ($("#cep").val() === '00000-000' || $("#cep").val() === '11111-111') {
+                        cepInvalido();
+                    } else {
+                        //Início do Comando AJAX
+                        $.ajax({
+                            //O campo URL diz o caminho de onde virá os dados
+                            //É importante concatenar o valor digitado no CEP
+                            url: 'https://viacep.com.br/ws/' + $(this).val() + '/json/unicode/',
+                            //Aqui você deve preencher o tipo de dados que será lido,
+                            //no caso, estamos lendo JSON.
+                            dataType: 'json',
+                            //SUCESS é referente a função que será executada caso
+                            //ele consiga ler a fonte de dados com sucesso.
+                            //O parâmetro dentro da função se refere ao nome da variável
+                            //que você vai dar para ler esse objeto.
+                            success: function (resposta) {
+                                //Agora basta definir os valores que você deseja preencher
+                                //automaticamente nos campos acima.
+                                $("#logradouro").val(resposta.logradouro);
+                                $("#complemento").val(resposta.complemento);
+                                $("#bairro").val(resposta.bairro);
+                                $("#cidade").val(resposta.localidade);
+                                $("#estado").val(resposta.uf);
+                                //Vamos incluir para que o Número seja focado automaticamente
+                                //melhorando a experiência do usuário
+                                $("#numero").focus();
+                            },
+                            error: function (resposta) {
+                                cepInvalido();
+                            }
+                        });
+                    }
+                });
+
+                function cepInvalido() {
+                    alert('Cep inválido');
+                    $('#cep').val('');
+                    $("#logradouro").val('');
+                    $("#complemento").val('');
+                    $("#bairro").val('');
+                    $("#cidade").val('');
+                    $("#uf").val('');
+                    $("#cep").focus();
+                }
+            </script>
+        </main>
+    </body>
+
+</html>

@@ -1,0 +1,276 @@
+<html data-layout-decorate="~{navbarComponent}" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Carrinho</title>
+<script type="text/javascript">
+    function selEndereco(end){
+    	$('#txtCep').val(end);
+    }
+    
+    $(document).ready(function(){
+    	$('#divParcelas').hide();
+    	
+    	//configurações do toastr
+    	toastr.options.closeButton = true;
+    	toastr.options.showMethod = 'slideDown';
+    	toastr.options.closeMethod = 'fadeOut';
+    	toastr.options.closeDuration = 300;
+    	toastr.options.closeEasing = 'swing';
+    	
+    	$('#formaPagamento').change(function(){
+    		if($('#formaPagamento').val() == 1){
+    			$('#divParcelas').show();
+    		} else{
+    			$('#qtdParcelas').val('');
+    			$('#divParcelas').hide();
+    		}
+    	});
+    	
+        $('#resumoPedido').submit(function (e) {
+        	
+        	var lista = [[${#lists.isEmpty(@carrinhoController.itensSelecionados)}]];
+        	
+        	if(lista){
+        		toastr.warning('Inclua itens no carrinho antes de prosseguir com o pedido');
+        		e.preventDefault(e);
+        	}
+        	
+        	if($('#formaPagamento').val() == 1 && $('#qtdParcelas').val() == ""){
+        		toastr.warning('Selecione a quantidade de parcelas');
+        		e.preventDefault(e);
+        	}
+        	
+        	if($('#formaPagamento').val() === ''){        		
+        		toastr.warning('Selecione uma forma de pagamento antes de prosseguir com o pedido');
+        		e.preventDefault(e);
+        	} else{
+        		$('#txtFormaPagto').val($('#formaPagamento').val());
+        	}
+        });
+    });
+    
+    function alterarQuantidade() {
+    	document.getElementById("incQtd").submit();
+    }
+    
+	</script>
+</head>
+<body>
+	<main layout:fragment="conteudo">
+	<section>
+		<div class="container">
+			<div class="card card-plain card-carrinho text-center">
+				<div class="card-body">
+					<div th:if="${msg != null}">
+						<div class="alert alert-warning alert-dismissible fade show"
+							role="alert">
+							<strong><span th:text="${msg}"></span></strong>
+							<button type="button" class="close" data-dismiss="alert"
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+					</div>
+					<h3 class="title">Itens no Carrinho</h3>
+					<h4 class="title"
+						data-th-if="${#lists.isEmpty(@carrinhoController.itensSelecionados)}">Seu
+						carrinho está vazio</h4>
+					<br>
+					<table class="table table-no-more text-center"
+						data-th-unless="${#lists.isEmpty(@carrinhoController.itensSelecionados)}">
+						<thead>
+							<tr>
+								<th>Produto</th>
+								<th>Preço</th>
+								<th>Quantidade</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr
+								data-th-each="sel,stat : ${@carrinhoController.itensSelecionados}">
+								<td data-th-text="${sel.item.nome}"></td>
+								<td>R$ <span
+									data-th-text="${#numbers.formatDecimal(sel.item.precoVenda,1,'DEFAULT',2,'DEFAULT')}"></span></td>
+								<td class="text-center">
+									<div class="row">
+										<div class="col-2 text-right">
+											<form method="post"
+												data-th-action="@{/carrinho/{listIndex}/decrementar(listIndex=${stat.index})}"
+												style="display: inline-block;">
+												<button type="submit" class="btn btn-sm btn-warning">
+													<i class="fa fa-minus"></i>
+												</button>
+											</form>
+										</div>
+										<div class="col-4">
+											<form id="incQtd"
+												data-th-action="@{/carrinho/{listIndex}/alterar(listIndex=${stat.index})}"
+												method="post" style="display: inline-block;">
+												<input type="number" id="qtd" name="qtd"
+													class="form-control form-control-sm"
+													data-th-value="${sel.quantidade}"
+													onchange="alterarQuantidade()" />
+											</form>
+										</div>
+										<div class="col-2 text-left">
+											<form
+												data-th-action="@{/carrinho/{listIndex}/incrementar(listIndex=${stat.index})}"
+												method="post" style="display: inline-block;">
+												<button type="submit" class="btn btn-sm btn-success">
+													<i class="fa fa-plus"></i>
+												</button>
+											</form>
+										</div>
+										<div class="col-4 text-left">
+											<form
+												data-th-action="@{/carrinho/{listIndex}/remover(listIndex=${stat.index})}"
+												method="post" style="display: inline-block;">
+												<button type="submit" class="btn btn-sm btn-danger">
+													<i class="fa fa-trash"></i>
+												</button>
+											</form>
+										</div>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<br>
+					<div class="row">
+						<div class="col-12 col-md-6">
+							<div class="card cardCarrinhoValor">
+								<div class="card-body">
+									<form data-th-action="@{/carrinho/frete}" method="post">
+										<div class="form-group row">
+											<label for="txtCep" class="col-sm-4">Calcular frete</label>
+											<div class="col-sm-8">
+												<div>
+													<input maxlength="9" type="text" name="cep"
+														class="form-control form-control-sm" id="txtCep"
+														placeholder="CEP">
+												</div>
+											</div>
+											
+											<div class="col-sm-2">
+												<button type="submit" class="btn btn-sm btn-primary">Calcular</button>
+											</div>
+
+										</div>
+									</form>
+
+								</div>
+							</div>
+						</div>
+						<div class="col-12 col-md-6">
+							<div class="card cardCarrinhoValor">
+								<div class="card-body">
+									<h3 class="title">
+										<b>Resumo</b>
+									</h3>
+									<hr>
+									<div class="valorProdutos text-uppercase ">
+										<div class="row">
+											<div class="col-6 text-left">
+												<label>Sub-total:</label>
+											</div>
+											<div class="col-6 ">
+												<b>R$ <span
+													data-th-text="${#numbers.formatDecimal(@carrinhoController.valorTotal,1,'DEFAULT',2,'DEFAULT')}"></span></b>
+											</div>
+										</div>
+										<div class="row valorCard">
+											<div class="col-6 text-left">
+												<label>Valor Frete:</label>
+											</div>
+											<div class="col-6">
+												<b>R$ <span
+													data-th-text="${#numbers.formatDecimal(@carrinhoController.valorFrete,1,'DEFAULT',2,'DEFAULT')}"></span></b>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-6 text-left">
+												<label>Valor Total:</label>
+											</div>
+											<div class="col-6">
+												<b>R$ <span
+													data-th-text="${#numbers.formatCurrency(@carrinhoController.valorFinal)}"></span></b>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-12">
+												<a th:href="@{/carrinho/resumo-pedido}"
+													class="btn btn-primary btnContinuar">Continuar</a>
+												
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Modal -->
+		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+			aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLongTitle">Selecione
+							o endereço de entrega</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<form data-th-action="@{/carrinho/frete}" method="post">
+							<div class="description">
+								<h4 class="info-title">Principal</h4>
+								<p>
+									Av. das Nações Unidas, 12901<br> São Paulo - SP, 04578-910
+								</p>
+								<input type="hidden" value="04578-910" name="cep">
+								<button type="submit" class="btn btn-sm btn-primary">Selecionar</button>
+							</div>
+						</form>
+						<form data-th-action="@{/carrinho/frete}" method="post">
+							<div class="description">
+								<h4 class="info-title">Casa</h4>
+								<p>
+									R. Café Natal, 33 - Vila Natal<br> São Paulo - SP,
+									04863-450
+								</p>
+								<input type="hidden" value="04863-450" name="cep">
+								<button type="submit" class="btn btn-sm btn-primary">Selecionar</button>
+							</div>
+						</form>
+						<form data-th-action="@{/carrinho/frete}" method="post">
+							<div class="description">
+								<h4 class="info-title">Comercial</h4>
+								<p>
+									Av. Dr. Chucri Zaidan, 1550 - Vila Cordeiro<br> São Paulo
+									- SP, 04583-110
+								</p>
+								<input type="hidden" value="04583-110" name="cep">
+								<button type="submit" class="btn btn-sm btn-primary">Selecionar</button>
+							</div>
+						</form>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary"
+								data-dismiss="modal">Fechar</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	</main>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<html layout:decorate="~{navbarComponent}">
+	<head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Pedido finalizado</title>
+    </head>
+    
+        <body>
+	        <main layout:fragment="conteudo">
+	        	<div class="container">
+	        		<div class="card card-plain card-carrinho text-center">
+						<div class="card-body">
+							<h3 class="text-success">Pedido <strong><span data-th-text="${idPedido}"></span></strong> finalizado com sucesso!</h3>
+							<p>Em breve você receberá detalhes por e-mail com as próximas atualizações do pedido</p>
+							<p>Clique <a class="btn-link" th:href="@{/pedido/resumo/{id}(id=${idPedido})}">aqui</a> para conferir os detalhes</p>
+	        			</div>
+	        		</div>
+	        	</div>
+	        </main>
+        </body>
+</html>

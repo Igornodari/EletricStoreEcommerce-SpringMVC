@@ -1,0 +1,152 @@
+<html data-layout-decorate="~{navbarComponent}">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Resumo do Pedido</title>
+    </head>
+
+    <body>
+        <main layout:fragment="conteudo">
+            <section>
+                <div class="container">
+                    <div class="card card-plain card-carrinho ">
+                        <div class="card-body">
+                            <div class="row text-center ">
+                                <div class="col-12 ">
+                                    <h2 class="title">Informações do pedido - </h2>
+                                </div>
+                            </div>
+                            <div class="row card">
+                                <div class="col-12" >
+                                    <h6>
+                                        Data do Pedido:
+                                    </h6>
+                                </div>
+                                <div class="col-12" >
+                                    <h6>
+                                        Forma de Pagamento:
+                                    </h6>
+                                </div>
+                                <div class="col-12" >
+                                    <h6>
+                                        Status do pedido:
+                                    </h6>
+                                </div>
+                            </div>
+                            <table class="table table-no-more text-center">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Produto</th>
+                                        <th>Preço</th>
+                                        <th>Quantidade</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><img class="imgProdutoCarrinho" src="/img/card-product1.jpg"></td>
+                                        <td> asd asd</td>
+                                        <td> asd as</td>
+                                        <td> asd asd</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br>
+                            <div class="row">
+                                <div class="col-12 col-md-6">
+                                    <div class="card cardCarrinhoValor text-center">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <h3 class="title">Dados de Entrega</h3>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div class="form-group row ">
+                                                <div class="col-12">
+                                                    <label for="txtEndereco" class="">Endereço de entrega</label>
+                                                    <input  type="text" name="endereco" class="form-control form-control-sm" id="txtEndereco" readonly>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-8">
+                                                    <label for="txtComplemento" class="">Complemento</label>
+                                                    <input type="text" name="complemento" class="form-control form-control-sm" id="txtComplemento" readonly>
+                                                </div>
+                                                <div class="col-4">
+                                                    <label for="txtNumero" class="">Número</label>
+                                                    <input type="text" name="numero" class="form-control form-control-sm" id="txtNumero" readonly>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-8">
+                                                    <label for="txtCidade" class="">Cidade</label>
+                                                    <input type="text" name="cidade" class="form-control form-control-sm" id="txtCidade" readonly>
+                                                </div>
+                                                <div class="col-4">
+                                                    <label for="txtCep" class="">Cep</label>
+                                                    <input type="text" name="cep" class="form-control form-control-sm" id="txtCep" readonly>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <div class="card cardCarrinhoValor">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <h3 class="title"> R$ Valores </h3>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div class="valorProdutos text-uppercase ">
+                                                <div class="row">
+                                                    <div class="col-6 text-left">
+                                                        <label>Sub-total:</label>
+                                                    </div>
+                                                    <div class="col-6 ">
+                                                        <label>R$ <span ></span></label>
+                                                    </div>
+                                                </div>
+                                                <div class="row valorCard">
+                                                    <div class="col-6 text-left">
+                                                        <label>Valor Frete:</label>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <label>R$ <span></span></label>
+                                                    </div>
+                                                </div>
+                                                <div class="row valorCard">
+                                                    <div class="col-6 text-left">
+                                                        <label>Valor Desconto:</label>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <label>R$ <span ></span></label>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-6 text-left">
+                                                        <label>Valor Total:</label>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <label>R$ <span ></span></label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row ">
+                            <div class="col-12 col-md-4 ">
+                                <button class="btn btnContinuar btn-primary">Voltar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </body>
+</html>

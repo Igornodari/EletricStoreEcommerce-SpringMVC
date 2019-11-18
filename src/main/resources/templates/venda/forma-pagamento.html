@@ -1,0 +1,161 @@
+<html layout:decorate="~{navbarComponent}">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Forma de Pagamento</title>
+    </head>
+    <body>
+        <main layout:fragment="conteudo">
+            <section>
+                <div class="container">
+                    <div class="card card-carrinho">
+                        <div class="row">
+                            <div class="col-md-1 col-3 text-center">
+                                <i class="material-icons cardIcon">
+                                    credit_card
+                                </i>
+                            </div>
+                            <div class="col-md-4 col-9 right">
+                                <h3 class="formPagamentoLabel">
+                                    Forma de Pagamento
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="">
+                        <div class="row">
+                            <div class="col-md-4 ">
+                                <ul class="nav nav-pills nav-pills-icons flex-column">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" href="#tab1" data-toggle="tab">
+                                            <i class="material-icons">
+                                                credit_card
+                                            </i>
+                                            Cartão de Crédito
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#tab2" data-toggle="tab">
+                                            <i class="fas fa-barcode"></i>
+                                            Boleto
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-md-8 container">
+                                <div class="tab-content">
+                                    <div class="card tab-pane active" id="tab1">
+                                    <form data-th-action="@{/carrinho/forma-pagamento}" method="post">
+                                    <input type="hidden" name="boleto" value="">
+                                        <div class="valorProdutos">
+                                            <div class="row">
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label for="nomeCartaoInput">Nome</label>
+                                                        <input  type="text" class="form-control" id="nomeCartao" name="cliente" placeholder="Titular do cartão"  required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-sm-12"> 
+                                                    <div class="form-group">
+                                                        <label for="numeroCartaoInput">Nº do cartão</label>
+                                                        <input  type="text" class="form-control" id="cartao" name="cartao" placeholder="0000 0000 0000 0000" maxlength="16" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label for="validadeCartaoInput">Data de validade</label>
+                                                        <input type="text" name="dataValidade" class="form-control" id="dataValidade" placeholder="02/2020" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6"> 
+                                                    <div class="form-group">
+                                                        <label for="codSegurancaInput">Cód. de segurança  </label>
+                                                        <input  type="text" class="form-control" id="codSeguranca" name="codSeguranca" placeholder="CVV" maxlength="3" required>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-4 col-12"> 
+                                                    <div class="form-group">
+                                                        <label for="ParcelamentoSelect">Parcelado em?</label> 
+                                                        <select class="form-control" data-style="btn btn-link"
+                                                                id="parcela" name="parcela" required>
+                                                            <option value="1">1x</option>
+                                                            <option value="2">2x</option>
+                                                            <option value="3">3x</option>
+                                                            <option value="4">4x</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="offset-md-9 col-md-3 col-12">
+                                                    <a href="">
+                                                        <button type="submit" class="btn btn-primary btnContinuar">
+                                                            Selecionar
+                                                        </button>
+                                                    </a>
+                                                </div>                                                
+                                            </div>
+                                        </div>
+                                        </form>
+                                    </div>
+                                    <div class="tab-pane" id="tab2">
+                                    <form data-th-action="@{/carrinho/forma-pagamento}" method="post">
+                                    <input type="hidden" name="boleto" value="boleto">
+                                    <input type="hidden" name="cartao" value="">
+                                    <input type="hidden" name="parcela" value="0">
+                                        <div class="row card">
+                                            <div class="row rowprinter">
+                                                <div class="col-2">
+                                                    <i class="material-icons printerIcon ">
+                                                        local_printshop
+                                                    </i>
+                                                </div>
+                                                <div class="col-md-10 col-10 ">
+                                                    <h4 class="text-printer">Imprima o boleto e pague no banco</h4>
+                                                </div>
+                                            </div>
+                                            <div class="row ">
+                                                <div class="col-2">
+                                                    <i class="material-icons printerIcon">
+                                                        devices
+                                                    </i>
+                                                </div>
+                                                <div class="col-md-10 col-10 ">
+                                                    <h4 class="text-printer">ou pague pela internet utilizando o código de barras do boleto</h4>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-2">
+                                                    <i class="material-icons printerIcon">
+                                                        calendar_today
+                                                    </i>
+                                                </div>
+                                                <div class="col-md-10 col-10 ">
+                                                    <h4 class="text-printer">o prazo de validade do boleto é de 1 dia útil</h4>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="offset-md-9 col-md-3 col-12">
+                                                    <a href="">
+                                                        <button type="submit" class="btn btn-primary btnContinuar">
+                                                            Selecionar
+                                                        </button>
+                                                    </a>
+                                                </div> 
+                                            </div>
+                                        </div>
+                                        </form> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+        </main>
+    </body>
+</html>

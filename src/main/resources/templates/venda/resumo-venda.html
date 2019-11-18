@@ -1,0 +1,272 @@
+<html layout:decorate="~{navbarComponent}" xmlns:th="http://www.w3.org/1999/xhtml">
+    <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Carrinho </title>
+        
+        <script type="text/javascript">
+        $(document).ready(function(){
+        	//configurações do toastr
+        	toastr.options.closeButton = true;
+        	toastr.options.showMethod = 'slideDown';
+        	toastr.options.closeMethod = 'fadeOut';
+        	toastr.options.closeDuration = 300;
+        	toastr.options.closeEasing = 'swing';
+        	
+            $('#resumoPedido').submit(function (e) {
+            	
+            	var lista = [[${#lists.isEmpty(@carrinhoController.itensSelecionados)}]];
+            	
+            	var formaPagamento = [[${@carrinhoController.formaPagamento}]];
+            	var endereco = [[${@carrinhoController.cepEntrega}]];
+            	console.log(endereco);
+            	
+            	if(lista){
+            		toastr.warning('Inclua itens no carrinho antes de prosseguir com o pedido');
+            		e.preventDefault(e);
+            	}
+            	
+            	if(formaPagamento == 0){
+            		toastr.warning('Selecione uma forma de pagamento');
+            		e.preventDefault(e);
+            	}
+            	
+            	if(endereco == '0'){
+            		toastr.warning('Selecione o endereço de entrega');
+            		e.preventDefault(e);
+            	}
+            	
+            });
+        });
+        </script>
+    </head>
+    <body>
+        <main layout:fragment="conteudo">
+            <section>
+                <div class="container">
+                    <div class="card card-plain card-carrinho text-center">
+                        <div class="card-body">
+							<div th:if="${msg != null}">
+								<div class="alert alert-warning alert-dismissible fade show" role="alert">
+								  <strong><span th:text="${msg}"></span></strong>
+								  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+								    <span aria-hidden="true">&times;</span>
+								  </button>
+								</div>
+							</div>                        
+                            <h3 class="title"><i class="material-icons">shopping_cart</i> Itens no carrinho</h3>
+                            <br>
+                            <table data-th-unless="${#lists.isEmpty(@carrinhoController.itensSelecionados)}" class="table table-no-more text-center">
+                                <thead>
+                                    <tr>
+                                        <th>Produto</th>
+                                        <th>Preço</th>
+                                        <th>Quantidade</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr data-th-each="sel : ${@carrinhoController.itensSelecionados}">
+                                        <td data-th-text="${sel.item.nome}"></td>
+                                        <td>R$ <span data-th-text="${#numbers.formatDecimal(sel.item.precoVenda,1,'DEFAULT',2,'DEFAULT')}"></span></td>
+                                        <td data-th-text="${sel.quantidade}"></td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                	<tr>
+                                		<td colspan="12"><a class="btn btn-sm btn-primary" th:href="@{/carrinho}">Editar itens</a></td>
+                                	</tr>
+                                </tfoot>
+                            </table>
+                            <br>
+                            <div class="">
+                                <div class="col-12">
+                                    <div class="card cardCarrinhoValor">
+                                        <div class="card-body">
+                                            <h3 class="title"><i class="fas fa-map-marker-alt"></i>Endereço de entrega</h3>
+                                            <hr>
+                                            <div class="valorProdutos text-uppercase ">
+                                                <div class="row">
+                                                    <div class="col-6 form-group">
+                                                        <label for="nomeDestInput">Nome do destinatário</label>
+                                                        <div data-th-if="${@carrinhoController.endereco} != null">
+                                                        	<span data-th-text="${@carrinhoController.endereco.nomeDestinatario}" class="form-control"></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class=" col-6 form-group">
+                                                        <label for="enderecoInput">Logradouro</label>
+                                                        <div data-th-if="${@carrinhoController.endereco} != null">
+                                                        	<span id="logradouro" data-th-text="${@carrinhoController.endereco.logradouro}" class="form-control"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-4 col-4">
+                                                        <div class="form-group">
+                                                            <label for="numeroInput">Número</label>
+                                                        <div data-th-if="${@carrinhoController.endereco} != null">
+                                                        	<span data-th-text="${@carrinhoController.endereco.numero}" class="form-control"></span>
+                                                        </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4 col-4">
+                                                        <div class="form-group">
+                                                            <label for="EstadoSelect">Estado</label>
+                                                        <div data-th-if="${@carrinhoController.endereco} != null">
+                                                        	<span data-th-text="${@carrinhoController.endereco.estado}" class="form-control"></span>
+                                                        </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4 col-4">
+                                                        <div class="form-group">
+                                                            <label for="CidadeSelect">Cidade</label>
+                                                        <div data-th-if="${@carrinhoController.endereco} != null">
+                                                        	<span data-th-text="${@carrinhoController.endereco.cidade}" class="form-control"></span>
+                                                        </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <button type="button" data-toggle="modal" data-target="#exampleModal" class="btn btn-sm btn-primary">Selecionar</button>
+                                        </div>
+                                    </div>
+                                </div>                              
+                            </div>
+                            <div class="row">
+                            <div class="col-12 col-md-6">
+                                    <div class="card cardCarrinhoValor">
+                                        <div class="card-body">
+                                            <h3 class="title"><i class="fas fa-credit-card"></i> Pagamento</h3>
+                                            <div class="valorProdutos text-uppercase ">
+                                            <a th:href="@{/carrinho/forma-pagamento}" class="btn btn-sm btn-block btn-primary">Selecionar forma de pagamento</a>
+                                            <br>
+			                                   <form data-th-action="@{/carrinho/cupom}" method="post">
+													<div class="form-group row">
+														<label for="txtCupom"
+															class="col-sm-4 col-form-label col-form-label-sm">Cupom
+															desconto</label>
+														<div class="col-sm-8">
+															<input type="text" name="cupom"
+																class="form-control form-control-sm" id="txtCupom">
+														</div>
+														<div class="col-sm-2">
+															<button type="submit"
+																class="btn btn-sm btn-primary">Aplicar
+																cupom</button>
+														</div>
+													</div>
+												</form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>              
+                                <div class="col-12 col-md-6">
+                                    <div class="card cardCarrinhoValor">
+                                        <div class="card-body">
+                                            <h3 class="title"><i class="fas fa-check-circle"></i> Resumo</h3>
+                                            <hr>
+                                            <div class="valorProdutos text-uppercase ">
+										<div class="row">
+											<div class="col-6 text-left">
+												<label>Sub-total:</label>
+											</div>
+											<div class="col-6 ">
+												<b>R$ <span data-th-text="${#numbers.formatDecimal(@carrinhoController.valorTotal,1,'DEFAULT',2,'DEFAULT')}"></span></b>
+											</div>
+										</div>
+										<div class="row valorCard">
+											<div class="col-6 text-left">
+												<label>Valor Frete:</label>
+											</div>
+											<div class="col-6">
+												<b>R$ <span data-th-text="${#numbers.formatDecimal(@carrinhoController.valorFrete,1,'DEFAULT',2,'DEFAULT')}"></span></b>
+											</div>
+										</div> 
+										<div class="row valorCard">
+											<div class="col-6 text-left">
+												<label>Valor Desconto:</label>
+											</div>
+											<div class="col-6">
+												<b>R$ <span data-th-text="${#numbers.formatDecimal(@carrinhoController.valorDesconto,1,'DEFAULT',2,'DEFAULT')}"></span></b>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-6 text-left">
+												<label>Valor Total:</label>
+											</div>
+											<div class="col-6">
+												<b>R$ <span data-th-text="${#numbers.formatCurrency(@carrinhoController.valorFinal)}"></span></b>
+											</div>
+										</div>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-6 text-left">
+                                                        <label>Forma de pagamento:</label>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <label><span data-th-text="${@carrinhoController.FormaPagamentoExtenso}"></span></label>
+                                                        <div data-th-if="${@carrinhoController.parcela != 0}"><label><span data-th-text="${@carrinhoController.parcela}"></span>X</label></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>                            	
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3 col-6">
+                                    <a href="">
+                                        <button type="submit" class="w-100 btn btn-primary btn-danger">
+                                            Cancelar
+                                        </button>
+                                    </a>
+                                </div>
+                                <div class="offset-md-6 col-md-3 col-6">
+	                                <form data-th-action="@{/carrinho/finalizar}" method="post" id="resumoPedido">
+	                                   <button type="submit" class="btn btn-primary btnContinuar">Finalizar</button>
+	                                </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            		<!-- Modal -->
+					<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+					  <div class="modal-dialog" role="document">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <h5 class="modal-title title" id="exampleModalLongTitle">Selecione o endereço de entrega</h5>
+					        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					          <span aria-hidden="true">&times;</span>
+					        </button>
+					      </div>
+					      <div class="modal-body">
+					      	<div data-th-each="sel : ${session.usuarioLogado.enderecos}">
+						      	<form data-th-action="@{/carrinho/seleciona-endereco}" method="post" >
+								      <div class="description">
+						                <h4 class="info-title"><span th:text="${sel.tipoEndereco}"></span></h4>
+						                <p>Responsável: <span th:text="${sel.nomeDestinatario}"></span><br>
+						                Endereço: <span th:text="${sel.logradouro}"></span> - <span th:text="${sel.numero}"></span><br>
+						                  <span th:text="${sel.cidade}"></span> - <span th:text="${sel.estado}"></span>, <span th:text="${sel.cep}"></span>
+						                </p>
+						                <input type="hidden" th:value="${sel.cep}" name="cep">
+						                <button type="submit" class="btn btn-sm btn-primary">Selecionar</button>
+						              </div>
+					              </form>					      	
+					      	</div>
+					      	<hr>
+					      	<div>
+					      		<a th:href="@{/cliente/perfil/{id}(id=${session.usuarioLogado.id})}" class="btn btn-sm btn-primary">Adicionar novo</a>
+					      	</div>
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+					      </div>
+					    </div>
+					  </div>
+					 </div>
+					</div>
+        </main>
+    </body>
+</html>

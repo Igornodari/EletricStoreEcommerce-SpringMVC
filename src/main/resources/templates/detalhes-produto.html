@@ -1,0 +1,57 @@
+<html layout:decorate="~{navbarComponent}" xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Detalhes-Produtos</title>
+    </head>
+    <body>
+        <main layout:fragment="conteudo">
+            <section class="detalheForm">
+                <div class="container">
+                    <div >
+                        <div class="row">
+                            <div class="col-sm-5 ">
+                                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                                    <div class="carousel-inner">
+                                        <div class="carousel-item active">
+                                            <img th:src="@{${produto.productImage}} " height="400" width="400"  />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 descricao justify-content-center">
+                                <h4 th:text="${produto.nome}" class="nomeProduto">
+                                    <button type="button" rel="tooltip" title="" class="btn btn-just-icon btn-round btn-rose btn-sm" data-original-title="Salvar nos Favoritos">
+                                        <i class="material-icons">favorite</i>
+                                    </button>
+                                </h4>
+
+                                <h2 class="precoProduto">R$ <span data-th-text="${#numbers.formatDecimal(produto.precoVenda,1,'DEFAULT',2,'DEFAULT')}"></span></h2>
+                                <h5 class="parcelamentoProduto">ou 4x de R$ <span th:text="${produto.precoVenda/4}"></span> Sem juros</h5>
+
+                                <div class="row">
+                                    <div class="col-5 ">
+	                                    <form method="post" data-th-action="@{/carrinho}">
+	                                    	<input type="hidden" name="itemId" data-th-value="${produto.id}" />
+	                                    	<button type="submit" class="btn btn-round btn-lg btn-block btn-success">Comprar</button>
+	                                    </form>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-10">
+                                        <div class="detalhes">
+                                            <h6>DETALHES</h6>
+                                            <br>
+                                            <p>- <span th:text="${produto.descricao}"></span></p>
+                                            <p>- <span th:text="${produto.especificacao}"></span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </section>
+        </main>
+    </body>
+</html>

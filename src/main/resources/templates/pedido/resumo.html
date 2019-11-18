@@ -1,0 +1,124 @@
+<html data-layout-decorate="~{navbarComponent}" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Resumo do Pedido</title>
+</head>
+
+<body>
+	<main layout:fragment="conteudo">
+		<section>
+		<div class="container">
+			<div class="card card-plain card-carrinho text-center">
+				<div class="card-body">
+					<b><h3 class="title">Resumo do Pedido - <span data-th-text="${pedido.id}"></span></h3></b>
+					<h4 class="col-sm-12 title">Data: <span data-th-text="${#temporals.format(pedido.data, 'dd/MM/yyyy')}"></span></h4>
+                    <h4 class="col-sm-12 title">Cliente: <span data-th-text="${pedido.cliente.nome}"></span></h4>
+					<h4 class="title">Itens do pedido</h4>					
+				<table class="table table-no-more text-center">
+						<thead>
+							<tr>
+								<th>Produto</th>
+								<th>Preço</th>
+								<th>Quantidade</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="p : ${itensPedido}">
+								<td data-th-text="${p.produto.nome}"></td>
+								<td data-th-text="${#numbers.formatDecimal(p.produto.precoVenda,1,'DEFAULT',2,'DEFAULT')}"></td>
+								<td data-th-text="${p.quantidade}"></td>
+							</tr>
+						</tbody>
+				</table>
+				<div class="row">
+						<div class="col-12 col-md-6">
+							<div class="card cardCarrinhoValor">
+								<div class="card-body">
+										<div class="form-group row">
+											<label for="txtCep" class="col-sm-4">Endereço de entrega</label>
+											<div class="col-sm-8">
+												<input data-th-value="${pedido.cepEntrega}" type="text" name="cep"class="form-control form-control-sm" id="txtCep" readonly>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label for="txtCupom"
+												class="col-sm-4 ">Cupom desconto</label>
+											<div class="col-sm-8">
+												<input type="text" name="cupom" class="form-control form-control-sm" id="txtCupom" readonly>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label for="txtCupom" class="col-sm-4 col-form-label col-form-label-sm">Forma de Pagamento</label>
+											<div class="col-sm-9">
+												<span data-th-text="${pedido.getFormaPagamentoExtenso()}"></span>
+											</div>
+										</div>
+										<div th:if="${pedido.parcela}">
+											<div class="form-group row" id="divParcelas">
+												<label for="txtCupom" class="col-sm-3 col-form-label col-form-label-sm">Nº de Parcelas</label>
+												<span data-th-text="${pedido.parcela}"></span>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label for="txtCupom" class="col-sm-4 col-form-label col-form-label-sm">Status</label>
+											<div class="col-sm-9">
+												<span data-th-text="${pedido.getStatusExtenso()}"></span>
+											</div>
+										</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-12 col-md-6">
+							<div class="card cardCarrinhoValor">
+								<div class="card-body">
+									<h3 class="title">
+										<b>R$ Valores</b>
+									</h3>
+									<hr>
+									<div class="valorProdutos text-uppercase ">
+										<div class="row">
+											<div class="col-6 text-left">
+												<label>Sub-total:</label>
+											</div>
+											<div class="col-6 ">
+												<label>R$ <span data-th-text="${#numbers.formatDecimal(pedido.getSubTotal(),1,'DEFAULT',2,'DEFAULT')}"></span></label>
+											</div>
+										</div>
+										<div class="row valorCard">
+											<div class="col-6 text-left">
+												<label>Valor Frete:</label>
+											</div>
+											<div class="col-6">
+												<label>R$ <span data-th-text="${#numbers.formatDecimal(pedido.frete,1,'DEFAULT',2,'DEFAULT')}"></span></label>
+											</div>
+										</div>
+										<div class="row valorCard">
+											<div class="col-6 text-left">
+												<label>Valor Desconto:</label>
+											</div>
+											<div class="col-6">
+												<label>R$ <span data-th-text="${#numbers.formatDecimal(pedido.desconto,1,'DEFAULT',2,'DEFAULT')}"></span></label>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-6 text-left">
+												<label>Valor Total:</label>
+											</div>
+											<div class="col-6">
+												<label>R$ <span data-th-text="${#numbers.formatCurrency(pedido.getValorTotal())}"></span></label>
+											</div>
+										</div>
+										<div class="row">										
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		</section>
+	</main>
+</body>
+</html>

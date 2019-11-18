@@ -1,0 +1,679 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 01/09/2019, 17:50:54
+    Author     : Gi
+*/
+.dropdown-item:hover{
+    background-color: #00aec5 !important;
+}
+
+.btn-login{
+    background-color: #00aec5 !important;
+    margin-left: 2px;
+}
+
+.detalheForm{
+    margin-top: 200px !important;
+}
+.fa-shopping-cart:hover{
+    color: black;
+}
+.fa-shopping-cart{
+    text-align: center;
+    color:  white;
+    font-size: 17px;
+}
+.btn-carrinho-iframe{
+    padding-bottom: 0 !important;
+    margin-right: 2px;
+}
+.btn-carrinho{
+    width: 80%;
+    background-color:#00aec5; 
+    min-width: 159px !important;
+    max-height: 43px !important;
+    color: white;
+}
+.btn-carrinho label{
+    color: white;
+    font-size: 12px;
+}
+.navbar{
+    padding: 8px;
+    border-radius: 0;
+
+}
+*{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.togglebutton label{
+    color: black !important;
+    margin-top: 17px;
+}
+.form-check-label{
+    color: black !important;  
+}
+.cardFiltro{
+    margin-top: 12em !important;
+}
+.filterComp{
+    padding: 20px;
+}
+h3{
+    width: 100%;
+    text-align: center;
+}
+h2{
+     width: 100%;
+}
+body{
+    background-color: white !important;
+}
+
+#menucd{
+    margin-top: 100px;
+    background-color: white !important;
+    color: black;
+    box-shadow: 10px;
+}
+header{
+    background-color: #00aec5;
+}
+#carrosel{
+    margin-top: 140px;
+}
+.carousel-indicators li{
+    margin-top: 50px !important;
+    background: #00aec5 !important;
+    bottom: -60px;
+}
+
+
+.main{
+    margin-top: 130px;
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-bottom: 100px; 
+    padding:50px;
+}
+.cardHome{
+    width: 250px !important; 
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+.box-image .produto-hover {
+    display: none;
+    width: 100%;
+}
+
+.box-image .produto {
+    width: 100%;
+    border-radius: 5px;
+    border-radius: 5px 5px 0 0;
+}
+
+.card {
+    /* Add shadows to create the "card" effect */
+    width: 250px;
+    margin-top: 2em;
+    -webkit-box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.4);
+    box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.4);
+    -webkit-transition: -webkit-transform 0.3s;
+    transition: -webkit-transform 0.3s;
+    transition: transform 0.3s;
+    transition: transform 0.3s, -webkit-transform 0.3s;
+    margin-top: 30px;
+    margin-left: 0 !important;
+}
+
+.cardHome:hover {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+    -webkit-box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.5);
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.5);
+}
+.produtoDesc {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.card {
+    padding: 20px;
+    width: 100%;
+}
+
+.iconCarousel {
+    background-color: rgba(0,0,0,0.5);
+    color: black;
+    width: 35px;
+    height: 40px;
+    border-radius: 10px;
+}
+
+.carousel-picture {
+    width: 100%;
+    padding: 20px;
+    border-color: black;
+    border: 5px;
+    border-radius: 10px;
+}
+
+.descricao {
+    margin: 10px;
+    padding: 20px;
+}
+
+.wall {
+    display: none;
+    width: 100%;
+    height: 100%;
+}
+
+.nomeProduto {
+    font-size: 25px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.precoProduto {
+    font-size: 35px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.parcelamentoProduto {
+    font-size: 20px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.modeloProduto {
+    font-size: 20px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.listRadio {
+    list-style-type: none;
+    display: inline;
+}
+
+.radioSize {
+    margin-left: 5px;
+}
+
+.radioOption {
+    float: left;
+    padding: 5px;
+}
+
+.listaTamanhos {
+    margin-bottom: 20px;
+}
+
+.quantidade {
+    border: 1px solid #00aec5;
+    line-height: 40px;
+    float: right;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.quantidade label {
+    margin-bottom: 0 !important;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+.btnComprar {
+    width: 100%;
+    background-color: #00aec5;
+    color: white;
+    border: 0;
+    border-radius: 25px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 15px;
+    letter-spacing: 2px;
+}
+
+.btnComprar:hover {
+    background-color: #28a745;
+    color: white;
+}
+
+.listaTamanhos {
+    border: 5px;
+    border-color: black;
+}
+
+.plus {
+    background-color: white;
+    border: 0;
+    outline: none;
+}
+
+.minus {
+    background-color: white;
+    border: 0;
+    outline: none;
+}
+.fa-user{
+    margin-left: 5px;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    font-size: 15px;
+    font-weight: 500;
+}
+.btn-rose{
+    color: pink;
+    background-color: pink;
+}
+ist{
+    margin-top: 2em !important;
+    width: 100%;
+}
+.cardProdutoList{
+    margin-left: 0 !important;
+}
+.btnRelevantes{
+    margin-top: 20px;
+    width: 100%;
+    float: right;
+}
+.card-title{
+    width: 100px;
+}
+.links-vertical li a{
+    padding: 0;
+}
+.carrinho{
+    float: right;
+    color: #00aec5;
+    font-size: 40px;
+    padding: 10px;
+}
+ul{
+    text-align:center;
+}
+li{
+    display:inline;
+}
+.vtr-input-box {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+}
+.vtr-input-box .vtr-label {
+    color: black;
+    display: inline;
+    position: absolute;
+    top: 17.5px;
+    left: 20px;
+    transition: 0.3s;
+}
+.vtr-input-box .vtr-input {
+    width: 100%;
+    height: 50px;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid #00aec5; 
+}
+.vtr-input-box.vtr-active .vtr-label {
+    top: 10px;
+    font-size: 12px;
+}
+.vtr-input-box.vtr-active .vtr-input {
+    padding-bottom: 10px;
+}
+.selectCads{
+    margin: 0;
+    width: 100%;
+    padding: 16px;
+    border-radius: 5px;
+}
+textarea{
+
+}
+::placeholder {
+
+}
+.formcad{
+    margin: 15px
+}
+.btnform {
+    width: 100%;
+    background-color: #00aec5;
+    color: white;
+    border: 0;
+    border-radius: 25px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 15px;
+    letter-spacing: 2px;
+}
+
+.btnform:hover {
+    background-color: grey;
+    color: white;
+}
+.btnInputImg input{
+    background-color: #00aec5;
+}
+.input-group .input-group-btn {
+    position: relative;
+}
+
+.btnInputImg {
+    width: 100%;
+    background-color: #00aec5;
+    color: white;
+    border: 0;
+    border-radius: 25px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 15px;
+    letter-spacing: 2px;
+}
+.form-group{
+    margin-bottom: 12px;
+    padding-top: 5px;
+}
+
+.btnInputImg:hover {
+    background-color: grey;
+    color: white;
+}
+.form-control{
+    margin-top: 10px;
+}
+.btn-reset{
+    border-radius: 25px;
+}
+.btn-reset:hover{
+    background-color: grey;
+}
+.formUpImg{
+    border-bottom: 1px solid #00aec5;
+    background-image: none;
+}
+.btnInputImgErase{
+    background-color: #00aec5 !important;
+    border-radius: 25px;
+}
+.formSearch{
+    width: 100% !important;
+}
+th{
+    text-align: center;
+}
+.cardForm{
+    margin-top: 12em !important;
+}
+.inputForm{
+    margin-bottom: 5px;
+}
+.form-control::-webkit-inner-spin-button { 
+    -webkit-appearance: none;
+
+}
+.form-control{ 
+    -moz-appearance: textfield;
+    appearance: textfield;
+    padding: 0;
+    height: 36px !important;
+}
+.item{
+    margin: 20px;
+}
+.item-carrinho{
+    width: 300px;
+}
+.quantidade-carrinho{
+    line-height: 40px;
+    float: right;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.card-item{
+    -webkit-box-shadow: 0px 0px 15px 10px rgba(0,0,0,0.49);
+    -moz-box-shadow: 0px 0px 15px 10px rgba(0,0,0,0.49);
+    box-shadow: 0px 0px 15px 10px rgba(0,0,0,0.49);
+}
+.table {
+    overflow: hidden;
+    border-radius: 3px;
+    -webkit-box-shadow: 0 1px 6px 0 rgba(0,0,0,.12), 0 1px 6px 0 rgba(0,0,0,.12);
+    -moz-box-shadow: 0 1px 6px 0 rgba(0,0,0,.12), 0 1px 6px 0 rgba(0,0,0,.12);
+    box-shadow: 0 1px 6px 0 rgba(0,0,0,.12), 0 1px 6px 0 rgba(0,0,0,.12);
+}
+
+.table > thead > tr > th {
+    border-bottom-color: #EEEEEE;
+}
+
+.table > tbody > tr > td, 
+.table > tbody > tr > th,
+.table > thead > tr > td, 
+.table > thead > tr > th {
+    padding: 15px;
+    background-color: #fff;
+    border-top-color: #EEEEEE;
+}
+
+.table > tbody > tr:hover > td {
+    background-color: #FAFAFA;
+}
+
+@media (max-width: 767px) {
+    .table-no-more,
+    .table-no-more > thead,
+    .table-no-more > thead > tr,
+    .table-no-more > thead > tr > th,
+    .table-no-more > tbody,
+    .table-no-more > tbody > tr,
+    .table-no-more > tbody > tr > td {
+        display: block;
+    }
+
+    .table-no-more > thead {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+        opacity: 0;
+    }
+
+    .table-no-more > tbody > tr > td {
+        position: relative;
+        padding-left: 45%;
+    }
+
+    .table-no-more > tbody > tr:nth-child(even) > td {
+        background-color: #ffffff;
+    }
+
+    .table-no-more > tbody > tr:nth-child(odd) > td {
+        background-color: #FAFAFA;
+    }
+
+    .table-no-more > tbody > tr > td:before {
+        position: absolute;
+        top: 15px;
+        left: 5%;
+        width: 40%;
+        white-space: nowrap;
+        font-weight: bold;
+    }
+
+    .table-no-more > tbody > tr > td:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 40%;
+        height: 100%;
+        border-right: 1px solid #EEEEEE;
+    }
+
+    .table-no-more > tbody > tr > td:nth-of-type(1):before {content: "";}
+    .table-no-more > tbody > tr > td:nth-of-type(2):before {content: "Produto";}
+    .table-no-more > tbody > tr > td:nth-of-type(3):before {content: "Preço";}
+    .table-no-more > tbody > tr > td:nth-of-type(4):before {content: "Quantidade";}
+}
+.imgProdutoCarrinho{
+    width: 100px;
+}
+.btnProdutoMais{
+    background-color: #28a745 !important;
+    border-radius: 10px;
+    border: 5px;
+    padding: 5px;
+    color: white;
+}
+
+.btnProdutoMenos{
+    background-color: #ea1c0d;
+    border-radius: 10px;
+    border: 5px;
+    padding: 5px;
+    color: white;
+}
+.fa-map-marker-alt{
+    padding: 10px;
+}
+.btnCep{
+    width: 60%;
+    background-color: #00aec5 !important;
+    border-radius: 10px;
+    border: 0;
+    color: white;
+}
+.cardCarrinhoValor{
+    margin-top:0;
+    min-height: 348px;
+}
+
+.card-header{
+    background: #00aec5 !important;
+    color: white;
+}
+.btnContinuar{
+    width: 100%;
+    background-color: #28a745 !important;
+    border-radius: 3px;
+    border: 0;
+    color: white;
+}
+.btn.btn-primary:hover{
+    box-shadow: 0 16px 38px -12px rgba(0, 0, 0, 0.56), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2)
+}
+.card-carrinho{
+    margin-top: 12em ;
+}
+.btn-cadastroCliente{
+    border: 2px solid #00aec5 !important;
+    color: #00aec5 !important;
+}
+.btnCriarConta{
+    background-color:  #28a745 !important;
+    width: 100%;
+}
+.formCadastroCliente{
+    margin-top: 10em;
+}
+.btn-logar{
+    background-color: #28a745 !important;
+}
+.btn-add-endereco{
+    background-color: #28a745;
+    margin-bottom: 10px;
+}
+.cardLogin{
+    margin: 10px !important  ;
+    
+}
+.cardEnderecoCheckout{
+    margin: 10px;
+}
+.input-group-addon.beautiful input[type="checkbox"],
+.input-group-addon.beautiful input[type="radio"] {
+    display: none;
+}
+.btn-secondary:not(:disabled):not(.disabled):active, .btn-secondary:not(:disabled):not(.disabled).active, .show>.btn-secondary.dropdown-toggle{
+    background-color: #e6f9ff;
+    color: black;
+    border-radius: 5px;
+}
+.btn-radioEndereco{
+    padding-right: 10px !important;
+    padding-left: 10px !important;
+    width: 600px !important;
+    justify-content: center;
+}
+btn-group{
+    margin: 10px;
+}
+.cardIcon{
+    font-size: 40px;
+    padding-top: 15px;
+}
+.formPagamentoLabel{
+    text-align: left !important;
+}
+.printerIcon{
+    text-align: center;
+    font-size: 40px !important;
+    padding-top: 15px;
+}
+.text-printer{
+    padding-top: 10px;
+}
+.rowprinter{
+    padding-top: 11px;
+    padding-bottom: 11px;
+}
+.nav-pills .nav-item .nav-link.active{
+ background-color: #00aec5;
+ color: white;
+ box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.2), 0 13px 24px -11px rgba(0, 0, 0, 0.6)
+}
+.footList{
+    list-style-type:none;
+}
+.footLi{
+    padding: 5px !important;
+    display: list-item;
+}
+.footLi a{
+    padding: 5px !important;
+}
+.fab{
+    font-size: 40px;
+}
+.footerStyle{
+    box-shadow: 0 5px 20px 20px rgba(0, 0, 0, 0.2), 0 13px 24px -11px rgba(0, 0, 0, 0.6);
+    margin-top: 100px;
+}
+select{
+    text-align-last: center;
+}
+.form-control{
+    text-align: center !important;
+}
+.filterProd{
+    margin: 10px;
+}

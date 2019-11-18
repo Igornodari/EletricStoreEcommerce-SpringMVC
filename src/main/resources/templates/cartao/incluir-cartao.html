@@ -1,0 +1,76 @@
+<html layout:decorate="~{navbarComponent}">
+
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Cadastro de cliente</title>
+    </head>
+
+    <body>
+        <main layout:fragment="conteudo">
+            <section class="">
+                <div class="container formCadastroCliente">
+                    <div class="card">
+                        <div class="card-body ">
+                            <div class="tab-content">
+                                <form th:object="${cartao}" th:action="@{/cartao/salvar}" method="POST">
+                                    <input th:field="*{idCliente}" type="hidden" id="id" name="id">
+                                    <div class="form-group row">
+                                        <div class="" th:if="${#fields.hasAnyErrors()}">
+                                            <div th:each="detailedError : ${#fields.detailedErrors()}">
+                                                <li class="text-danger"><span th:text="${detailedError.message}"></span></li>
+                                            </div>
+                                        </div>
+                                    </div> 
+                                    <h3>Novo Cartão de crédito</h3>
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label for="nomeDestInput">Nome do titular</label> 
+                                                <input th:field="*{nome}" type="text" class="form-control" id="nomeDestInput"
+                                                       name="nomeDestInput" required placeholder="Nome do titular no cartão">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label for="cepInput">Número</label> 
+                                                <input th:field="*{numero}" type="text" class="form-control" id="numero" name="numero" maxlength="16"
+                                                       required placeholder="Número do cartão">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label for="enderecoInput">Validade</label> 
+                                                <input th:field="*{validade}" type="text" class="form-control" id="validade"
+                                                       name="validade" required placeholder="Validade mm/aaaa">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label for="numeroInput">Cód Segurança</label> 
+                                                <input th:field="*{codigoSeguranca}" required type="text" class="form-control" id="codigoSeguranca" name="codigoSeguranca"
+                                                       placeholder="123">
+                                            </div>
+                                        </div>    
+                                    </div>
+                                    <br>
+                                    <div class="row ">
+                                        <div class="col-md-2 offset-md-8 col-sm-6 ">
+                                            <input type="button" class="btn btn-primary btn-block btn-danger" value="Cancelar">
+                                        </div>
+                                        <div class="col-md-2 col-sm-6">
+                                            <input type="submit" class="btn btn-primary btn-block btn-success" value="Salvar">
+                                        </div>    
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            </main>
+    </body>
+
+</html>

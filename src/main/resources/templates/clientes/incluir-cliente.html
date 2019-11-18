@@ -1,0 +1,399 @@
+<html layout:decorate="~{navbarComponent}">
+
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Cadastro de cliente</title>
+    </head>
+
+    <body>
+        <main layout:fragment="conteudo">
+            <section class="">
+                <div class="container formCadastroCliente">
+                    <div class="card card-nav-tabs">
+                        <div class="card-header card-header-primary">
+                            <!-- colors: "header-primary", "header-info", "header-success", "header-warning", "header-danger" -->
+                            <div class="nav-tabs-navigation">
+                                <div class="nav-tabs-wrapper">
+                                    <ul class="nav nav-tabs" data-tabs="tabs">
+                                        <li class="nav-item">
+                                            <a class="nav-link active show" href="#profile" data-toggle="tab">
+                                                <i class="material-icons">face</i> Dados Pessoais
+                                            </a>
+                                        </li>
+                                        <!--  
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#messages" data-toggle="tab">
+                                                <i class="material-icons">chat</i> Endereços
+                                                <div class="ripple-container"></div></a>
+                                        </li>
+                                        
+                                        <li class="nav-item">
+                                            <a class="nav-link " href="#settings" data-toggle="tab">
+                                                <i class="material-icons">credit_card</i> Cartões
+                                                <div class="ripple-container"></div></a>
+                                        </li>
+                                        -->
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body ">
+                            <div class="tab-content text-center">
+                                <div class="tab-pane active show" id="profile">
+                                    <form class="text-center" th:object="${cliente}" th:action="@{/cliente/salvar}" method="POST">
+                                        <h3>Dados Pessoais</h3>
+                                        <div class="form-group row">
+                                            <div class="" th:if="${#fields.hasAnyErrors()}">
+                                                <div th:each="detailedError : ${#fields.detailedErrors()}">
+                                                    <li class="text-danger"><span th:text="${detailedError.message}"></span></li>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6 col-12">
+                                                <div class="form-group">
+                                                    <label for="nomeCompletoInput">Nome</label>
+                                                    <input th:field="*{nome}" type="text" class="form-control" id="nome" name="nome" placeholder="Seu nome aqui" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-12">
+                                                <div class="form-group">
+                                                    <label for="nomeCompletoInput">Sobrenome</label>
+                                                    <input th:field="*{sobrenome}" type="text" class="form-control" id="sobrenome" name="sobrenome" placeholder="Seu sobrenome aqui" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-3 col-12">
+                                                <div class="form-group">
+                                                    <label for="EmailInput">Email</label>
+                                                    <input th:field="*{email}" type="email" class="form-control" id="email" name="email" placeholder="email@exemplo.com" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 col-12">
+                                                <div class="form-group">
+                                                    <label class="label-control">Data de nascimento</label>
+                                                    <input type="date" name="dataNasc" class="form-control" th:classappend="${#fields.hasErrors('dataNasc')}? is-invalid" 
+                                                           id="dataNasc" placeholder="Data no formato yyyy-MM-dd" th:field="*{dataNasc}" 
+                                                           th:max="${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 col-12">
+                                                <div class="form-group">
+                                                    <label for="cpfInput">CPF</label>
+                                                    <input th:field="*{cpf}" type="text" class="form-control" id="cpf" 
+                                                           name="cpf" placeholder="000.000.000-00" maxlength="11" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 col-12">
+                                                <div class="form-group">
+                                                    <label for="sexoSelect">Sexo</label>
+                                                    <select th:field="*{sexo}" class="form-control" id="sexo" name="sexo" required>
+                                                        <option value="M" >Masculino</option>
+                                                        <option value="F">Feminino</option>
+                                                        <option value="O">Outro</option>
+                                                    </select>
+                                                </div>
+                                            </div> 
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="form-group">
+                                                    <label for="celularInput">Celular</label>
+                                                    <input th:field="*{celular}" type="text" class="form-control" id="celular" 
+                                                           name="celular"  placeholder="(00)00000-0000" maxlength="11" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="form-group">
+                                                    <label for="telefoneInput">Telefone </label>
+                                                    <input th:field="*{telefone}" type="text" class="form-control" id="telefone" 
+                                                           name="telefone" placeholder="(00)0000-0000" maxlength="10">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12 col-md-6">
+                                                <div class="form-group">
+                                                    <label for="senhaInput">Senha</label>
+                                                    <input th:field="*{senha}" type="password" minlength="6" maxlength="12" class="form-control" id="senha" name="senha" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                <div class="form-group">
+                                                    <label for="confirmarSenhaInput">Confirmar senha</label>
+                                                    <input type="password" class="form-control" id="confirmarSenha" name="confirmarSenha" >
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row ">
+                                            <div class="col-sm-2 offset-sm-7 col-lg-2 offset-lg-10 text-center">
+                                                <button type="submit" class="btn btn-round btn-primary btnCriarConta">Salvar</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="tab-pane" id="messages">
+                                    <h3 >Endereço</h3>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label for="nomeDestInput">Nome do destinatário</label>
+                                                <input  type="text" class="form-control" id="nomeDestInput" name="nomeDestInput" placeholder="Quem irá receber ?">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <div class="form-group">
+                                                <label for="cepInput">CEP</label>
+                                                <input  type="text" class="form-control" id="cep" name="cep" placeholder="00000-000">
+                                            </div>
+                                        </div>
+                                        <div class="col-8">
+                                            <div class="form-group">
+                                                <label for="enderecoInput">Logradouro</label>
+                                                <input  type="text" class="form-control" id="logradouro" name="logradouro" placeholder="Rua St, "
+                                                        readonly >
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <div class="form-group">
+                                                <label for="numeroInput">Número</label>
+                                                <input  type="text" class="form-control" id="numero" name="numero" placeholder="1234">
+                                            </div>
+                                        </div>
+                                        <div class="col-9">
+                                            <div class="form-group">
+                                                <label for="complementoInput">Complemento</label>
+                                                <input  type="text" class="form-control" id="complemento" name="complemento" placeholder="Apto ***">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row"> 
+                                        <div class="col-8">
+                                            <div class="form-group">
+                                                <label for="bairroInput">Bairro</label>
+                                                <input  type="text" class="form-control" id="bairro" name="bairro" placeholder="Jd Maria" readonly> 
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="form-group">
+                                                <label for="TipoEndSelect">Tipo de endereço</label>
+                                                <select class="form-control selectpicker" data-style="btn btn-link" id="TipoEndSelect" name="TipoEndSelect" required >
+                                                    <option value="" >Residencial</option>
+                                                </select>           
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label for="EstadoSelect">Estado</label>
+                                                <input  type="text" class="form-control" id="estado" name="estado" placeholder="SP"
+                                                        readonly >
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label for="CidadeSelect">Cidade</label>
+                                                <input  type="text" class="form-control" id="cidade" name="cidade" placeholder="São Paulo"
+                                                        readonly >
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row ">
+                                        <div class="col-sm-2 offset-sm-7 col-lg-2 offset-lg-10 text-center">
+                                            <button type="submit" class="btn btn-round btn-primary btnCriarConta">Continuar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane " id="settings">
+                                    <h3>Cartão</h3>
+                                    <div class="row">
+                                        <div class="col-lg-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label for="nomeCartaoInput">Nome</label>
+                                                <input  type="text" class="form-control" id="nomeCartao" name="cliente" placeholder="Titular do cartão" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-sm-12"> 
+                                            <div class="form-group">
+                                                <label for="numeroCartaoInput">Nº do cartão</label>
+                                                <input  type="text" class="form-control" id="numCartao" name="cliente" placeholder="0000 0000 0000 0000" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label for="validadeCartaoInput">Data de validade</label>
+                                                <input type="text" name="dataValidade" class="form-control" id="dataValidade" placeholder="02/2020">
+                                            </div>
+                                        </div>
+                                        <div class="col-6"> 
+                                            <div class="form-group">
+                                                <label for="codSegurancaInput">Cód. de segurança  </label>
+                                                <input  type="text" class="form-control" id="codSeguranca" name="codSeguranca" placeholder="CVV" maxlength="3" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row ">
+                                        <div class="col-sm-2 offset-sm-7 col-lg-2 offset-lg-10 text-center">
+                                            <button type="submit" class="btn btn-round btn-primary btnCriarConta">Salvar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+            <script th:inline="javascript">
+
+                $(document).ready(function () {
+                    if ($('.card-header.card-chart').length != 0) {
+                        md.initDashboardPageCharts();
+                    }
+
+                    if ($('#websiteViewsChart').length != 0) {
+                        md.initDocumentationCharts();
+                    }
+
+                    if ($('.datetimepicker').length != 0) {
+                        md.initFormExtendedDatetimepickers();
+                    }
+                    if ($('#fullCalendar').length != 0) {
+                        md.initFullCalendar();
+                    }
+
+                    if ($('.slider').length != 0) {
+                        md.initSliders();
+                    }
+
+                    //  Activate the tooltips
+                    $('[data-toggle="tooltip"]').tooltip();
+
+                    // Activate Popovers
+                    $('[data-toggle="popover"]').popover();
+
+                    // Vector map
+                    if ($('#worldMap').length != 0) {
+                        md.initVectorMap();
+                    }
+
+                    if ($('#RegisterValidation').length != 0) {
+
+                        setFormValidation('#RegisterValidation');
+
+                        function setFormValidation(id) {
+                            $(id).validate({
+                                highlight: function (element) {
+                                    $(element).closest('.form-group').removeClass('has-success').addClass('has-danger');
+                                    $(element).closest('.form-check').removeClass('has-success').addClass('has-danger');
+                                },
+                                success: function (element) {
+                                    $(element).closest('.form-group').removeClass('has-danger').addClass('has-success');
+                                    $(element).closest('.form-check').removeClass('has-danger').addClass('has-success');
+                                },
+                                errorPlacement: function (error, element) {
+                                    $(element).closest('.form-group').append(error);
+                                },
+                            });
+                        }
+                    }
+
+                });
+
+                // FileInput
+                $('.form-file-simple .inputFileVisible').click(function () {
+                    $(this).siblings('.inputFileHidden').trigger('click');
+                });
+
+                $('.form-file-simple .inputFileHidden').change(function () {
+                    var filename = $(this).val().replace(/C:\\fakepath\\/i, '');
+                    $(this).siblings('.inputFileVisible').val(filename);
+                });
+
+                $('.form-file-multiple .inputFileVisible, .form-file-multiple .input-group-btn').click(function () {
+                    $(this).parent().parent().find('.inputFileHidden').trigger('click');
+                    $(this).parent().parent().addClass('is-focused');
+                });
+
+                $('.form-file-multiple .inputFileHidden').change(function () {
+                    var names = '';
+                    for (var i = 0; i < $(this).get(0).files.length; ++i) {
+                        if (i < $(this).get(0).files.length - 1) {
+                            names += $(this).get(0).files.item(i).name + ',';
+                        } else {
+                            names += $(this).get(0).files.item(i).name;
+                        }
+                    }
+                    $(this).siblings('.input-group').find('.inputFileVisible').val(names);
+                });
+
+                $('.form-file-multiple .btn').on('focus', function () {
+                    $(this).parent().siblings().trigger('focus');
+                });
+
+                $('.form-file-multiple .btn').on('focusout', function () {
+                    $(this).parent().siblings().trigger('focusout');
+                });
+
+                //estamos usando uma api gratuita para a consulta de CEPs
+                $("#cep").focusout(function () {
+                    if ($("#cep").val() === '00000-000' || $("#cep").val() === '11111-111') {
+                        cepInvalido();
+                    } else {
+                        //Início do Comando AJAX
+                        $.ajax({
+                            //O campo URL diz o caminho de onde virá os dados
+                            //É importante concatenar o valor digitado no CEP
+                            url: 'https://viacep.com.br/ws/' + $(this).val() + '/json/unicode/',
+                            //Aqui você deve preencher o tipo de dados que será lido,
+                            //no caso, estamos lendo JSON.
+                            dataType: 'json',
+                            //SUCESS é referente a função que será executada caso
+                            //ele consiga ler a fonte de dados com sucesso.
+                            //O parâmetro dentro da função se refere ao nome da variável
+                            //que você vai dar para ler esse objeto.
+                            success: function (resposta) {
+                                //Agora basta definir os valores que você deseja preencher
+                                //automaticamente nos campos acima.
+                                $("#logradouro").val(resposta.logradouro);
+                                $("#complemento").val(resposta.complemento);
+                                $("#bairro").val(resposta.bairro);
+                                $("#cidade").val(resposta.localidade);
+                                $("#estado").val(resposta.uf);
+                                //Vamos incluir para que o Número seja focado automaticamente
+                                //melhorando a experiência do usuário
+                                $("#numero").focus();
+                            },
+                            error: function (resposta) {
+                                cepInvalido();
+                            }
+                        });
+                    }
+                });
+
+                function cepInvalido() {
+                    alert('Cep inválido');
+                    $('#cep').val('');
+                    $("#logradouro").val('');
+                    $("#complemento").val('');
+                    $("#bairro").val('');
+                    $("#cidade").val('');
+                    $("#uf").val('');
+                    $("#cep").focus();
+                }
+            </script>
+        </main>
+    </body>
+
+</html>

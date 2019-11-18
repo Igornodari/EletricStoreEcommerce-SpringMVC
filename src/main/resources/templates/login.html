@@ -1,0 +1,47 @@
+<html layout:decorate="~{navbarComponent}">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Home Page</title>
+    </head>
+    <body>
+        <main layout:fragment="conteudo"> <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <section class=" container ">
+                <div class="row justify-content-center">
+                    <div class="card cardLogin col-md-5 col-sm-10">
+                        <form th:object=${cliente} th:action="@{/login}" method="POST">
+                            <h3>Login</h3>
+                            <div class="form-group row">
+                                <div class="" th:if="${#fields.hasAnyErrors()}">
+                                    <div th:each="detailedError : ${#fields.detailedErrors()}">
+                                        <li class="text-danger"><span
+                                                th:text="${detailedError.message}"></span></li>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Email</label> 
+                                <input th:field="*{email}" type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Entre com o e-mail" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Senha</label> 
+                                <input th:field="*{senha}" type="password" class="form-control" id="senha" name="senha" placeholder="Entre com a senha" required>
+                            </div>
+                            <a th:href="@{/cliente/salvar}" class=" btn-block btn-link">Ainda
+                                não é cadastrado?</a> <br>
+
+                            <button type="submit" class="btn btn-primary btn-block btn-success">Entrar</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </body>
+</html>
+

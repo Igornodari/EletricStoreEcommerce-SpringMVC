@@ -1,0 +1,47 @@
+<html layout:decorate="~{navbarComponent}" xmlns:layout="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Pedido finalizado</title>
+</head>
+
+<body>
+	<main layout:fragment="conteudo">
+	<div class="container">
+		<div class="card card-plain card-carrinho text-center">
+			<div class="card-body">
+			<h3>Lista de pedidos</h3>
+				<div class="table-responsive">
+					<table class="table">
+						<thead>
+							<tr>
+								<th class="text-center"><b>ID</b></th>
+								<th class="text-center"><b>Data/Hora</b></th>
+								<th class="text-center"><b>Valor do Pedido</b></th>
+								<th class="text-center"><b>Forma de Pagamento</b></th>
+								<th class="text-center"><b>Cliente</b></th>
+								<th class="text-center"><b>Status</b></th>
+								<th class="text-center"><b>#</b></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="p : ${pedidos}">
+								<td th:text="${p.id}" class="text-center"></td>
+								<td data-th-text="${#temporals.format(p.data, 'dd/MM/yyyy HH:mm')}" class="text-center"></td>
+								<td data-th-text="${#numbers.formatCurrency(p.getValorTotal())}" class="text-center"></td>
+								<td th:text="${p.getFormaPagamentoExtenso()}" class="text-center"></td>
+								<td th:text="${p.cliente.nome}" class="text-center"></td>
+								<td th:text="${p.getStatusExtenso()}" class="text-center"></td>
+								<td><a th:href="@{/pedido/resumo/{id}(id=${p.id})}" class="btn btn-sm btn-link btn-success"
+								     data-toggle="tooltip" data-placement="left"
+                                     title="Detalhes do Pedido"><i class="material-icons">search</i></a></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	</main>
+</body>
+</html>

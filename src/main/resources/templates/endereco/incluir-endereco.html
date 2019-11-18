@@ -1,0 +1,310 @@
+<html layout:decorate="~{navbarComponent}">
+
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Cadastro de cliente</title>
+    </head>
+
+    <body>
+        <main layout:fragment="conteudo">
+            <section class="">
+                <div class="container formCadastroCliente">
+                    <div class="card">
+                        <div class="card-body ">
+                            <div class="tab-content">
+                                <form th:object="${endereco}" th:action="@{/endereco/salvar}" method="POST">
+                                    <input th:field="*{idCliente}" type="hidden" id="id" name="id">
+                                    <div class="form-group row">
+                                        <div class="" th:if="${#fields.hasAnyErrors()}">
+                                            <div th:each="detailedError : ${#fields.detailedErrors()}">
+                                                <li class="text-danger"><span th:text="${detailedError.message}"></span></li>
+                                            </div>
+                                        </div>
+                                    </div> 
+                                    <h3>Novo Endereço</h3>
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label for="nomeDestInput">Nome do destinatário</label> 
+                                                <input th:field="*{nomeDestinatario}" type="text" class="form-control" id="nomeDestInput"
+                                                       name="nomeDestInput" required placeholder="Quem irá receber ?">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label for="cepInput">CEP</label> 
+                                                <input th:field="*{cep}" type="text" class="form-control" id="cep" name="cep" maxlength="8"
+                                                       required placeholder="00000-000">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label for="enderecoInput">Logradouro</label> 
+                                                <input th:field="*{logradouro}" type="text" class="form-control" id="logradouro"
+                                                       name="logradouro" required placeholder="Rua St, " readonly>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label for="numeroInput">Número</label> 
+                                                <input th:field="*{numero}" required type="text" class="form-control" id="numero" name="numero"
+                                                       placeholder="1234">
+                                            </div>
+                                        </div>    
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-4 col-md-4 col-sm-4">
+                                            <div class="form-group">
+                                                <label for="complementoInput">Complemento</label> 
+                                                <input th:field="*{complemento}" type="text" class="form-control" id="complemento"
+                                                       name="complemento" placeholder="Apto ***">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4">
+                                            <div class="form-group">
+                                                <label for="bairroInput">Bairro</label> 
+                                                <input th:field="*{bairro}" type="text" class="form-control" id="bairro" name="bairro"
+                                                       placeholder="Jd Maria" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4">
+                                            <div class="form-group">
+                                                <label for="TipoEndSelect">Tipo de endereço</label> 
+                                                <select th:field="*{tipoEndereco}" class="form-control" data-style="btn btn-link"
+                                                        id="TipoEndSelect" name="TipoEndSelect" required>
+                                                    <option value="Principal">Principal</option>
+                                                    <option value="Residencial">Residencial</option>
+                                                    <option value="Comercial">Comercial</option>
+                                                    <option value="Outro">Outro</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-4">
+                                            <div class="form-group">
+                                                <label for="EstadoSelect">Estado</label> 
+                                                <input th:field="*{estado}" type="text" class="form-control" id="estado" name="estado"
+                                                       placeholder="SP" required readonly>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-4">
+                                            <div class="form-group">
+                                                <label for="CidadeSelect">Cidade</label> 
+                                                <input th:field="*{cidade}" type="text" class="form-control" id="cidade" name="cidade"
+                                                       placeholder="São Paulo" required readonly>
+                                            </div>
+                                        </div>
+                                    </div>    
+                                    <br>
+                                    <div class="row ">
+                                        <div class="col-md-2 offset-md-8 col-sm-6 ">
+                                            <input type="button" class="btn btn-primary btn-block btn-danger" value="Cancelar">
+                                        </div>
+                                        <div class="col-md-2 col-sm-6">
+                                            <input type="submit" class="btn btn-primary btn-block btn-success" value="Salvar">
+                                        </div>    
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+                    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"></script> <script th:inline="javascript">
+                $(document)
+                        .ready(
+                                function () {
+                                    if ($('.card-header.card-chart').length != 0) {
+                                        md.initDashboardPageCharts();
+                                    }
+
+                                    if ($('#websiteViewsChart').length != 0) {
+                                        md.initDocumentationCharts();
+                                    }
+
+                                    if ($('.datetimepicker').length != 0) {
+                                        md.initFormExtendedDatetimepickers();
+                                    }
+                                    if ($('#fullCalendar').length != 0) {
+                                        md.initFullCalendar();
+                                    }
+
+                                    if ($('.slider').length != 0) {
+                                        md.initSliders();
+                                    }
+
+                                    //  Activate the tooltips
+                                    $('[data-toggle="tooltip"]').tooltip();
+
+                                    // Activate Popovers
+                                    $('[data-toggle="popover"]').popover();
+
+                                    // Vector map
+                                    if ($('#worldMap').length != 0) {
+                                        md.initVectorMap();
+                                    }
+
+                                    if ($('#RegisterValidation').length != 0) {
+
+                                        setFormValidation('#RegisterValidation');
+
+                                        function setFormValidation(id) {
+                                            $(id)
+                                                    .validate(
+                                                            {
+                                                                highlight: function (
+                                                                        element) {
+                                                                    $(element)
+                                                                            .closest(
+                                                                                    '.form-group')
+                                                                            .removeClass(
+                                                                                    'has-success')
+                                                                            .addClass(
+                                                                                    'has-danger');
+                                                                    $(element)
+                                                                            .closest(
+                                                                                    '.form-check')
+                                                                            .removeClass(
+                                                                                    'has-success')
+                                                                            .addClass(
+                                                                                    'has-danger');
+                                                                },
+                                                                success: function (
+                                                                        element) {
+                                                                    $(element)
+                                                                            .closest(
+                                                                                    '.form-group')
+                                                                            .removeClass(
+                                                                                    'has-danger')
+                                                                            .addClass(
+                                                                                    'has-success');
+                                                                    $(element)
+                                                                            .closest(
+                                                                                    '.form-check')
+                                                                            .removeClass(
+                                                                                    'has-danger')
+                                                                            .addClass(
+                                                                                    'has-success');
+                                                                },
+                                                                errorPlacement: function (
+                                                                        error,
+                                                                        element) {
+                                                                    $(element)
+                                                                            .closest(
+                                                                                    '.form-group')
+                                                                            .append(
+                                                                                    error);
+                                                                },
+                                                            });
+                                        }
+                                    }
+
+                                });
+
+                // FileInput
+                $('.form-file-simple .inputFileVisible').click(function () {
+                    $(this).siblings('.inputFileHidden').trigger('click');
+                });
+
+                $('.form-file-simple .inputFileHidden').change(function () {
+                    var filename = $(this).val().replace(/C:\\fakepath\\/i, '');
+                    $(this).siblings('.inputFileVisible').val(filename);
+                });
+
+                $(
+                        '.form-file-multiple .inputFileVisible, .form-file-multiple .input-group-btn')
+                        .click(
+                                function () {
+                                    $(this).parent().parent().find(
+                                            '.inputFileHidden').trigger('click');
+                                    $(this).parent().parent()
+                                            .addClass('is-focused');
+                                });
+
+                $('.form-file-multiple .inputFileHidden').change(
+                        function () {
+                            var names = '';
+                            for (var i = 0; i < $(this).get(0).files.length; ++i) {
+                                if (i < $(this).get(0).files.length - 1) {
+                                    names += $(this).get(0).files.item(i).name
+                                            + ',';
+                                } else {
+                                    names += $(this).get(0).files.item(i).name;
+                                }
+                            }
+                            $(this).siblings('.input-group').find(
+                                    '.inputFileVisible').val(names);
+                        });
+
+                $('.form-file-multiple .btn').on('focus', function () {
+                    $(this).parent().siblings().trigger('focus');
+                });
+
+                $('.form-file-multiple .btn').on('focusout', function () {
+                    $(this).parent().siblings().trigger('focusout');
+                });
+
+                //estamos usando uma api gratuita para a consulta de CEPs
+                $("#cep").blur(
+                        function () {
+                            if ($("#cep").val() === '00000-000'
+                                    || $("#cep").val() === '11111-111') {
+                                cepInvalido();
+                            } else {
+                                //Início do Comando AJAX
+                                $
+                                        .ajax({
+                                            //O campo URL diz o caminho de onde virá os dados
+                                            //É importante concatenar o valor digitado no CEP
+                                            url: 'https://viacep.com.br/ws/'
+                                                    + $(this).val()
+                                                    + '/json/unicode/',
+                                            //Aqui você deve preencher o tipo de dados que será lido,
+                                            //no caso, estamos lendo JSON.
+                                            dataType: 'json',
+                                            //SUCESS é referente a função que será executada caso
+                                            //ele consiga ler a fonte de dados com sucesso.
+                                            //O parâmetro dentro da função se refere ao nome da variável
+                                            //que você vai dar para ler esse objeto.
+                                            success: function (resposta) {
+                                                //Agora basta definir os valores que você deseja preencher
+                                                //automaticamente nos campos acima.
+                                                $("#logradouro").val(
+                                                        resposta.logradouro);
+                                                $("#complemento").val(
+                                                        resposta.complemento);
+                                                $("#bairro").val(resposta.bairro);
+                                                $("#cidade").val(
+                                                        resposta.localidade);
+                                                $("#estado").val(resposta.uf);
+                                                //Vamos incluir para que o Número seja focado automaticamente
+                                                //melhorando a experiência do usuário
+                                                $("#numero").focus();
+                                            },
+                                            error: function (resposta) {
+                                                cepInvalido();
+                                            }
+                                        });
+                            }
+                        });
+
+                function cepInvalido() {
+                    alert('Cep inválido');
+                    $('#cep').val('');
+                    $("#logradouro").val('');
+                    $("#complemento").val('');
+                    $("#bairro").val('');
+                    $("#cidade").val('');
+                    $("#uf").val('');
+                }
+            </script> </main>
+    </body>
+
+</html>
